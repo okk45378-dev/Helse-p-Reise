@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<title>Kroppen på reise</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  padding: 20px;
+}
+.box {
+  background: white;
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+  border-radius: 10px;
+}
+button {
+  margin-top: 10px;
+  padding: 10px;
+}
+</style>
+</head>
+
+<body>
+<div class="box">
+<h2>🌍 Kroppen på reise</h2>
+
+<p>Velg miljø:</p>
+<select id="miljo">
+  <option value="0">Varmt klima</option>
+  <option value="1">Kaldt klima (lite sol)</option>
+  <option value="2">Tett storby</option>
+</select>
+
+<p>Hvor mye sol får du?</p>
+<select id="sol">
+  <option value="0">Mye</option>
+  <option value="1">Noe</option>
+  <option value="2">Lite</option>
+</select>
+
+<p>Bor du tett med mange andre?</p>
+<select id="tett">
+  <option value="0">Nei</option>
+  <option value="2">Ja</option>
+</select>
+
+<br>
+<button onclick="beregn()">Se helsescore</button>
+
+<p id="resultat"></p>
+</div>
+
+<script>
+function beregn() {
+  let score = 100;
+
+  score -= parseInt(document.getElementById("miljo").value) * 10;
+  score -= parseInt(document.getElementById("sol").value) * 15;
+  score -= parseInt(document.getElementById("tett").value);
+
+  let tekst = "";
+
+  if (score >= 70) {
+    tekst = "🟢 God tilpasning. Kroppen håndterer miljøet bra.";
+  } else if (score >= 40) {
+    tekst = "🟡 Moderat risiko. Tiltak anbefales.";
+  } else {
+    tekst = "🔴 Høy risiko. Helseutfordringer kan oppstå.";
+  }
+
+  document.getElementById("resultat").innerHTML =
+    "Helsescore: <b>" + score + "</b><br>" + tekst;
+}
+</script>
+
+</body>
+</html>
+Add index.html
